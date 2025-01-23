@@ -36,8 +36,13 @@ function processText(text) {
 
 async function loadQuotes() {
     try {
-        // Update the fetch URL to use the correct path
-        const response = await fetch('/OoCQ/Quoteddata.json');
+        // Try with relative path and log the attempt
+        const jsonPath = 'quoteddata.json';
+        console.log('Attempting to fetch from:', jsonPath);
+        const response = await fetch(jsonPath);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
         quotes = data.messages.map(message => ({
             quote: cleanQuotes(message.content),
@@ -54,6 +59,7 @@ async function loadQuotes() {
         populateYearFilter(); // Call this when initializing your page
     } catch (error) {
         console.error('Error loading quotes:', error);
+        console.log('Current page URL:', window.location.href); // Debug log
         document.getElementById('quoteContainer').innerHTML = 
             `<div class="message error">Error loading quotes: ${error.message}</div>`;
     }
