@@ -36,7 +36,8 @@ function processText(text) {
 
 async function loadQuotes() {
     try {
-        const response = await fetch('./Quoteddata.json');
+        // Update the fetch URL to use the correct path
+        const response = await fetch('/OoCQ/Quoteddata.json');
         const data = await response.json();
         quotes = data.messages.map(message => ({
             quote: cleanQuotes(message.content),
