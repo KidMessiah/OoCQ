@@ -189,7 +189,7 @@ function displayLeaderboard() {
     const quotedLeaderboard = document.getElementById('quotedLeaderboard');
     const senderLeaderboard = document.getElementById('senderLeaderboard');
     
-    // Display most quoted people
+    // Display mosts quoted people
     quotedLeaderboard.innerHTML = leaderboard.quoted
         .map(([name, count]) => `
             <div class="leaderboard-item">
