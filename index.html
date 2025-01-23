@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Quote Browser</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="filters">
+                <h3>Taylah's OoCQ Archive</h3>
+                <div class="filter-section">
+                    <label>Quoter:</label>
+                    <select id="senderFilter"></select>
+                </div>
+                <div class="filter-section">
+                    <label>Quotee:</label>
+                    <select id="quotedFilter"></select>
+                </div>
+                <div class="filter-section">
+                    <label>Year:</label>
+                    <select id="yearFilter"></select>
+                </div>
+                <div class="filter-section">
+                    <label>Month:</label>
+                    <select id="monthFilter">
+                        <option value="">All</option>
+                        <option value="0">January</option>
+                        <option value="1">February</option>
+                        <option value="2">March</option>
+                        <option value="3">April</option>
+                        <option value="4">May</option>
+                        <option value="5">June</option>
+                        <option value="6">July</option>
+                        <option value="7">August</option>
+                        <option value="8">September</option>
+                        <option value="9">October</option>
+                        <option value="10">November</option>
+                        <option value="11">December</option>
+                    </select>
+                </div>
+                <div class="filter-section">
+                    <label>Day:</label>
+                    <input type="number" id="dayFilter" min="1" max="31" placeholder="Any">
+                </div>
+                <button id="randomQuote">Random Quote</button>
+                <button id="resetFilters">Reset Filters</button>
+                <button id="demonHours">Demon Hours</button>
+                <div class="leaderboard-section">
+                    <h3>Most Quoted</h3>
+                    <div id="quotedLeaderboard"></div>
+                </div>
+                <div class="leaderboard-section">
+                    <h3>Most Active Recorders</h3>
+                    <div id="senderLeaderboard"></div>
+                </div>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search quotes...">
+            </div>
+            <div class="messages" id="quoteContainer">
+                <!-- Quotes will be inserted here -->
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
