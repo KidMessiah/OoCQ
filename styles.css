@@ -27,13 +27,16 @@ body {
 
 .container {
     display: flex;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .sidebar {
-    width: 240px;
-    background-color: var(--background-secondary);
-    padding: 10px;
+    width: 300px;
+    min-width: 300px;
+    background-color: #2f3136;
+    padding: 20px;
+    transition: all 0.3s ease;
+    position: relative;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
@@ -41,8 +44,52 @@ body {
     overflow: visible; /* Changed from hidden to visible */
 }
 
+.sidebar.collapsed {
+    min-width: 50px;
+    width: 50px;
+}
+
+.sidebar.collapsed .filters {
+    display: none;
+}
+
+.sidebar-toggle {
+    position: absolute;
+    left: 260px; /* Changed from right: -30px */
+    top: 15px;   /* Adjusted to align with h3 */
+    width: 30px;
+    height: 30px;
+    background-color: #2c2f33;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;    /* Add this to ensure it's above other elements */
+}
+
+.sidebar.collapsed .sidebar-toggle {
+    left: 10px;    /* Add this to adjust position when collapsed */
+}
+
+.sidebar-toggle .arrow {
+    color: white;
+    transition: transform 0.3s ease;
+}
+
+.sidebar.collapsed .sidebar-toggle .arrow {
+    transform: rotate(180deg);
+}
+
+.arrow {
+    color: white;
+    font-size: 12px;       /* Adjust size if needed */
+}
+
 .main-content {
-    flex: 1;
+    flex-grow: 1;
+    padding: 20px;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     background-color: var(--background-primary);
@@ -368,4 +415,35 @@ select:hover {
     height: 100%;
     z-index: -1;
     pointer-events: none;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-width: 100%;
+        padding: 10px;
+    }
+
+    .sidebar.collapsed {
+        min-width: 40px;
+        width: 40px;
+    }
+
+    .main-content {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .quote-of-the-day {
+        margin: 10px 0;
+    }
+
+    .messages {
+        margin-top: 10px;
+    }
 }

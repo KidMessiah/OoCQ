@@ -249,6 +249,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Add sidebar toggle functionality
+const sidebar = document.getElementById('sidebar');
+const sidebarToggle = document.getElementById('sidebarToggle');
+
+sidebarToggle.addEventListener('click', function() {
+    sidebar.classList.toggle('collapsed');
+});
+
+// Handle mobile devices initial state
+function checkMobileCollapse() {
+    if (window.innerWidth <= 768) {
+        sidebar.classList.add('collapsed');
+    } else {
+        sidebar.classList.remove('collapsed');
+    }
+}
+
+// Check on load and window resize
+checkMobileCollapse();
+window.addEventListener('resize', checkMobileCollapse);
+
 // Load quotes when page loads
 document.addEventListener('DOMContentLoaded', loadQuotes);
 
