@@ -4,8 +4,22 @@ function seededRandom(seed) {
     return x - Math.floor(x);
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
+// Global debug date variable
+let debugDate = null;
+
+// Global function to set debug date
+window.setDebugDate = function(dateString) {
+    debugDate = new Date(dateString);
+    console.log('Debug date set to:', debugDate);
+    // Reload quote with new date
+    loadQuoteOfTheDay();
+};
+
+// Separate the quote loading logic into its own function
+async function loadQuoteOfTheDay() {
     try {
+        let today = debugDate || new Date();
+
         const response = await fetch('quoteddata.json');
         const data = await response.json();
         
@@ -33,10 +47,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             })
             .filter(q => q.text && q.author); // Remove any empty quotes
         
-        // Get today's date components for seed
-        const today = new Date();
-        const seed = today.getFullYear() * 10000 + today.getMonth() * 100 + today.getDate();
+        // Use UTC date components for consistent seed across timezones
+        const seed = Date.UTC(
+            today.getUTCFullYear(),
+            today.getUTCMonth(),
+            today.getUTCDate()
+        ) / 86400000; // Convert to days since epoch for a simpler seed
         
+        console.log('Using seed:', seed, 'for date:', today.toISOString());
+
         // Use seeded random to select quote
         const randomIndex = Math.floor(seededRandom(seed) * quotes.length);
         const quoteOfTheDay = quotes[randomIndex];
@@ -49,4 +68,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (error) {
         console.error('Error loading quote of the day:', error);
     }
-});
+}
+
+document.addEventListener('DOMContentLoaded', loadQuoteOfTheDay);
