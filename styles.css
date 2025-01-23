@@ -301,6 +301,26 @@ select:hover {
     /* color property will be set dynamically in JavaScript */
 }
 
+.quote-of-the-day {
+    padding: 20px;
+    background-color: var(--background-secondary);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    text-align: center;
+    color: var(--header-primary);
+    font-size: 18px;
+    font-weight: bold;
+    animation: sparkle 1.5s infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% {
+        text-shadow: 0 0 5px #fff, 0 0 10px #ff0, 0 0 15px #ff0, 0 0 20px #ff0, 0 0 25px #ff0;
+    }
+    50% {
+        text-shadow: 0 0 10px #fff, 0 0 20px #ff0, 0 0 30px #ff0, 0 0 40px #ff0, 0 0 50px #ff0;
+    }
+}
+
 /* ...rest of the existing styles... */
 
 @keyframes flame {
